@@ -1,26 +1,15 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* බ්‍රෑන්ඩ් එකට ඕන කරන Custom Colors ටික Tailwind v4 ක්‍රමයට Variable විදිහට මෙහෙම දාමු */
+@theme {
+  --color-brand-forest: #112211;
+  --color-brand-olive: #4B5320;
+  --color-brand-sand: #F4F1EA;
+  --color-brand-gold: #D4AF37;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background-color: var(--color-brand-sand);
+  color: var(--color-brand-forest);
   font-family: Arial, Helvetica, sans-serif;
 }
