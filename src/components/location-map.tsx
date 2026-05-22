@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'react-redux'; // වැරදීමකින් හෝ වෙනත් ලයිබ්‍රරි ආවොත්, අපි සාමාන්‍ය motion ගනිමු
+import { motion } from 'framer-motion';// වැරදීමකින් හෝ වෙනත් ලයිබ්‍රරි ආවොත්, අපි සාමාන්‍ය motion ගනිමු
 import { motion as framerMotion } from 'framer-motion';
 import { MapPin, Compass, Car, Navigation, ArrowRight } from 'lucide-react';
 
