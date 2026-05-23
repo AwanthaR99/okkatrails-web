@@ -46,38 +46,41 @@ export default function Hero() {
   return (
     <div className="relative h-screen w-full bg-brand-forest overflow-hidden">
       
-      {/* 🏞️ Background Image Slider (Crossfade) */}
-      <AnimatePresence mode="wait">
+      {/* 🏞️ Background Image Slider (Crossfade - FIXED) */}
+      {heroSlides.map((slide, index) => (
         <motion.div
-          key={current}
+          key={index}
           initial={{ opacity: 0, scale: 1.05 }}
-          animate={{ opacity: 0.6, scale: 1 }}
-          exit={{ opacity: 0 }}
+          animate={{ 
+            opacity: current === index ? 0.6 : 0, 
+            scale: current === index ? 1 : 1.05 
+          }}
           transition={{ duration: 1.2, ease: 'easeInOut' }}
           className="absolute inset-0 w-full h-full"
+          style={{ zIndex: current === index ? 1 : 0 }}
         >
           <Image
-            src={heroSlides[current].image}
-            alt={heroSlides[current].title}
+            src={slide.image}
+            alt={slide.title}
             fill
-            priority
+            priority // සියලුම පින්තූර preload කිරීම සඳහා
             className="object-cover"
           />
         </motion.div>
-      </AnimatePresence>
+      ))}
 
       {/* 🌑 Luxury Vignette Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-brand-forest via-transparent to-brand-forest/40 z-10" />
+      <div className="absolute inset-0 bg-gradient-to-t from-brand-forest via-transparent to-brand-forest/40 z-10 pointer-events-none" />
 
       {/* ✍️ Content Overlays */}
-      <div className="absolute inset-0 z-20 flex items-center">
+      <div className="absolute inset-0 z-20 flex items-center pointer-events-none">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 w-full">
-          <div className="max-w-3xl">
+          <div className="max-w-3xl pointer-events-auto">
             
             {/* Animated Tagline */}
             <AnimatePresence mode="wait">
               <motion.div
-                key={current}
+                key={`tagline-${current}`}
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -15 }}
@@ -92,7 +95,7 @@ export default function Hero() {
             {/* Animated Main Title */}
             <AnimatePresence mode="wait">
               <motion.h1
-                key={current}
+                key={`title-${current}`}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
@@ -106,7 +109,7 @@ export default function Hero() {
             {/* Animated Description */}
             <AnimatePresence mode="wait">
               <motion.p
-                key={current}
+                key={`desc-${current}`}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
